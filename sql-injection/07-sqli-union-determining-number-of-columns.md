@@ -36,6 +36,8 @@ column count.
 
 `' ORDER BY 4--` → `500 Internal Server Error`
 
+![check datatype column](images/07/noof_colm2.png)
+
 → The query has **exactly 3 columns**. Column 4 does not
 exist, so the database throws an error.
 
@@ -50,8 +52,6 @@ exist, so the database throws an error.
 → error (column count mismatch)
 
 `' UNION SELECT NULL,NULL,NULL--` → `200 OK` (page loads with extra null row)
-
-![check datatype column](images/07/noof_colm2.png)
 
 → Confirmed **3 columns**. The page displayed an extra
 blank/null product entry, proving the UNION succeeded.
