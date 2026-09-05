@@ -1,6 +1,6 @@
 ## LAB-4 SQL INJECTION ATTACK, QUERYING THE DATABASE TYPE AND VERSION ON MYSQL OR MICROSOFT SQL SERVER
 
-## LAB : [PortSwigger Lab 4 Link](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-multiple-values-in-single-column)
+## LAB : [PortSwigger Lab 4 Link](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-oracle)
 
 ## What?
 
