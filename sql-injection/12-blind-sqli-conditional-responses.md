@@ -72,6 +72,10 @@ FROM users WHERE username='administrator' AND LENGTH(password)>25)='a'--
 
 → Used Burp Intruder to iterate 1–25. Response changed between 20 and 21. **Password length = 20.**
 
+![check datatype column](images/12/pass_len_ck20.png)
+
+![check datatype column](images/12/pass_len_ck20_1.png)
+
 ### Step 4 — Extract password character-by-character:
 
 Used **Burp Intruder Cluster Bomb** with two payload positions:
@@ -80,9 +84,6 @@ Used **Burp Intruder Cluster Bomb** with two payload positions:
 TrackingId=xyz' AND (SELECT
 SUBSTRING(password,§1§,1) FROM users WHERE username='administrator')='§a§'--
 ```
-![check datatype column](images/12/pass_len_ck20.png)
-
-![check datatype column](images/12/pass_len_ck20_1.png)
 
 * **Position 1:** Character offset (1–20)
 * **Position 2:** Character value (a–z, 0–9)
