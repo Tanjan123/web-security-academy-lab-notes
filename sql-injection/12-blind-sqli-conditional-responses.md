@@ -17,12 +17,14 @@
 
 ![check datatype column](images/12/nrmal_cdn.png)
 
+![check datatype column](images/12/trck_id_chng.png)
+
 Modified the `TrackingId` cookie value:
 
 * `TrackingId=xyz' AND '1'='1` → **"Welcome back" appears** (true condition)
 * `TrackingId=xyz' AND '1'='2` → **"Welcome back" disappears** (false condition)
 
-![check datatype column](images/12/trck_id_chng.png)
+![check datatype column](images/12/sql_ck.png)
 
 This proved the backend query is:
 
