@@ -21,6 +21,7 @@ Intercepted the request, confirmed SQL context. Probed column count and types:
 ` 
 UNION SELECT NULL,'abc'-- → 200 OK (column 2 is text)
 `
+
 `
 ' UNION SELECT 'abc',NULL-- → error (column 1 is not text)
 `
