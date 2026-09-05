@@ -18,13 +18,14 @@ Requires string concatenation to fit both username and password into a single te
 
 Intercepted the request, confirmed SQL context. Probed column count and types:
 
-```plain
+```
 ' UNION SELECT NULL,'abc'-- → 200 OK (column 2 is text)
-
-![check datatype column](images/10/dt_ck_colm.png)
-
+```
+```
 ' UNION SELECT 'abc',NULL-- → error (column 1 is not text)
 ```
+
+![check datatype column](images/10/dt_ck_colm.png)
 
 → Only **column 2 accepts text**.
 
