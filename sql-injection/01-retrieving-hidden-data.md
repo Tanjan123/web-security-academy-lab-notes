@@ -1,5 +1,7 @@
 ## LAB-1 SQL INJECTION VULNERABILITY IN WHERE CLAUSE ALLOWING RETRIEVAL OF HIDDEN DATA
 
+## LAB : [Portswigger Lab 1 Link](https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data)
+
 ## What?
 String-based SQL Injection in the product category filter. The application takes user-supplied input and concatenates it directly into a SQL WHERE clause, allowing an attacker to alter query logic and retrieve data outside the intended scope.
 
