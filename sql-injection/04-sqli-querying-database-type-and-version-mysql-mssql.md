@@ -26,6 +26,7 @@ extraction viable.
 **Step 1 — Find column count and text columns:**
 ![check no of column](images/04/noof_column1.png)
 ![check no of column](images/04/noof_column2.png)
+
 Choose one of them for finding no of columns in table.
 
 ![check datatype column](images/04/column_db_check.png)
