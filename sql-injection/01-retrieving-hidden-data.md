@@ -1,85 +1,47 @@
-# SQL Injection in WHERE Clause – Retrieval of Hidden Data
-
-## Lab
-PortSwigger Web Security Academy  
-Topic: SQL Injection
+## LAB-1 SQL INJECTION VULNERABILITY IN WHERE CLAUSE ALLOWING RETRIEVAL OF HIDDEN DATA
 
 ## What?
-
-A SQL injection vulnerability exists in the product category filter.
-User-controlled input is incorporated into a SQL WHERE clause, allowing
-an attacker to alter the intended database query.
+String-based SQL Injection in the product category filter. The application takes user-supplied input and concatenates it directly into a SQL WHERE clause, allowing an attacker to alter query logic and retrieve data outside the intended scope.
 
 ## Where?
+•	Page: `/filter` (product listing)
+•	Method: GET
+•	Parameter: category (query string)
+•	No auth required
 
-- Endpoint: `/filter`
-- Method: `GET`
-- Parameter: `category`
-- Authentication: Not required
-
-## How did I identify it?
-
-I intercepted the category-selection request in Burp Suite and modified
-the `category` parameter.
-
-Adding a single quote (`'`) caused the application to return an HTTP
-500 Internal Server Error.
-
-This indicated that my input might be affecting the syntax of a
-server-side SQL statement.
+## How did I find it?
+I intercepted the category selection in Burp Suite and noticed category=Gifts in the URL. I replaced Gifts with a single quote (') and the server responded with a 500 Internal Server Error. A syntax error on a single quote strongly suggests the input is being parsed as part of a SQL statement.
+![Payload_Platform](images/01/sql_injection_platform.png)
 
 ## How did I verify it?
-
-I tested the `category` parameter with:
-
-[put your payload here]
-
-The application then returned products that were normally hidden,
-confirming that the application's query logic could be manipulated
-through the parameter.
+![Payload_Attack](images/01/payload_used.png)
+I changed the parameter to:
+`category=' OR 1=1--`
+The page now displayed all products, including unreleased ones. The OR `1=1` made the WHERE clause always true, and `--` commented out the AND released `= 1` restriction. The appearance of previously hidden products confirmed successful injection.
 
 ## Why does it work?
+The backend builds the query by directly embedding user input into the SQL string:
+`SELECT * FROM products WHERE category = 'Gifts' AND released = 1`
+When I injected `' OR 1=1--`, the database interpreted my input as executable SQL rather than plain data. There is no separation between code and data — the query is constructed dynamically without parameterization.
 
-The application incorporates user-controlled input into a SQL query
-without safely separating the input from SQL syntax.
+## What can an attacker do?
+•	Bypass business-logic filters (e.g., view unreleased products)
+•	Enumerate the entire products table using UNION SELECT
+•	Potentially read other tables or sensitive fields if the database user has broader permissions
 
-Conceptually, the application performs a query similar to:
+## What are the conditions/limitations?
+•	Unauthenticated — anyone can reach the filter page
+•	The injection occurs inside single quotes (string context), so the payload must close the quote first
+•	The database accepts -- as a comment delimiter
+•	Error responses are visible, making detection easier; blind exploitation would require different techniques
 
-[put the conceptual SQL query here]
+## How should it be fixed?
+Primary: Use a parameterized query so user input is bound as data, not SQL:
+`SELECT * FROM products WHERE category = ? AND released = 1`
+Defense-in-depth: Whitelist allowed category values; use an ORM; restrict database user privileges to least-required access.
 
-Because the input is interpreted as part of the SQL statement, an
-attacker can modify the logic of the WHERE clause.
+## What did I learn?
+I initially thought a 500 error was just a generic crash, but here it was the best confirmation that SQL syntax was being broken. I also realized that -- is a quick way to neutralize trailing AND conditions in WHERE clauses. On a real target, I will now treat any filter parameter that throws a database error on a quote as a high-priority SQLi candidate.
 
-## Impact
-
-In this lab, the vulnerability allows an unauthenticated user to bypass
-the intended product filter and retrieve unreleased products.
-
-The impact demonstrated by this lab is unauthorized access to data that
-the application intended to hide.
-
-## Conditions / Limitations
-
-- No authentication is required.
-- The injection occurs in a string context.
-- The tested parameter is `category`.
-- Further database access was not established as part of this lab.
-
-## Remediation
-
-Use parameterized queries/prepared statements so that user-controlled
-values are treated as data rather than executable SQL syntax.
-
-Additional defense-in-depth measures include:
-
-- Applying least privilege to the database account.
-- Avoiding verbose database errors in production.
-- Validating input according to the application's expected values.
-
-## What I Learned
-
-An HTTP 500 response after introducing a SQL metacharacter can be a
-useful clue, but the error alone does not prove SQL injection.
-
-The stronger evidence came from deliberately modifying the query's
-logical behavior and observing normally hidden records being returned.
+## What was the key obstacle?
+None — this is a classic, unfiltered string-context SQLi. The only "obstacle" is recognizing that the error response itself is the proof, not just the successful payload. This lab teaches you to trust syntax errors as diagnostic signals.
