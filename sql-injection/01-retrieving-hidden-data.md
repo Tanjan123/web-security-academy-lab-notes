@@ -5,8 +5,11 @@ String-based SQL Injection in the product category filter. The application takes
 
 ## Where?
 •	Page: `/filter` (product listing)
-•	Method: GET
-•	Parameter: category (query string)
+
+•	Method: `GET`
+
+•	Parameter: `category` (query string)
+
 •	No auth required
 
 ## How did I find it?
