@@ -11,6 +11,7 @@ String-based SQL Injection in the product category filter. The application takes
 
 ## How did I find it?
 I intercepted the category selection in Burp Suite and noticed category=Gifts in the URL. I replaced Gifts with a single quote (') and the server responded with a 500 Internal Server Error. A syntax error on a single quote strongly suggests the input is being parsed as part of a SQL statement.
+
 ![Payload_Platform](images/01/sql_injection_platform.png)
 
 ## How did I verify it?
