@@ -21,6 +21,7 @@ Same pattern as Lab 1: intercepted the category request, tested `category='` →
 error confirmed SQL context. Since the output displays product data (name,
 description, etc.), a **UNION attack** is viable — the page has room to
 render extra query results.
+
 ![sql version payload](images/03/database_version_query.png)
 
 ## How did I verify it?
@@ -33,6 +34,7 @@ The page displayed `abc` and `def` in the product slots,
 confirming **2 columns, both text-compatible**.
 
 **Step 2 — Extract version:**
+
 ![attacking payload](images/03/3_payload_used.png)
 
 `' UNION SELECT BANNER, NULL FROM v$version--`
