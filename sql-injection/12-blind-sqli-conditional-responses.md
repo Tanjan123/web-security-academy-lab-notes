@@ -95,6 +95,8 @@ SUBSTRING(password,§1§,1) FROM users WHERE username='administrator')='§a§'--
 
 Filtered results by **"Welcome back"** presence. Extracted password: **h274cwl7erwljum6dje3**
 
+![check datatype column](images/12/pass_reveal.png)
+
 ## Why does it work?
 
 The backend query:
