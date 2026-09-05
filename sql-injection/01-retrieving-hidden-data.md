@@ -15,6 +15,7 @@ I intercepted the category selection in Burp Suite and noticed category=Gifts in
 
 ## How did I verify it?
 ![Payload_Attack](images/01/sql_payload_used.png)
+
 I changed the parameter to:
 `category=' OR 1=1--`
 The page now displayed all products, including unreleased ones. The OR `1=1` made the WHERE clause always true, and `--` commented out the AND released `= 1` restriction. The appearance of previously hidden products confirmed successful injection.
