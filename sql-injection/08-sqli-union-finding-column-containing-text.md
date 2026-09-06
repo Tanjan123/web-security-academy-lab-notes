@@ -1,6 +1,6 @@
 ## LAB 8 — SQL INJECTION UNION ATTACK, FINDING A COLUMN CONTAINING TEXT
 
-## LAB : [PortSwigger Lab 8 Link](https://portswigger.net/web-security/sql-injection/union-attacks/lab-find-a-column-containing-text)
+## LAB : [PortSwigger Lab 8 Link](https://portswigger.net/web-security/sql-injection/union-attacks/lab-find-column-containing-text)
 
 ## What?
 
