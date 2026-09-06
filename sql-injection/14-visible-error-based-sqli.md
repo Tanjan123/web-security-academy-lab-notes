@@ -1,6 +1,6 @@
 ## LAB 14 — VISIBLE ERROR-BASED SQL INJECTION
 
-## LAB : [PortSwigger Lab 14 Link](https://portswigger.net/web-security/sql-injection/blind/lab-visible-error-based-sql-injection)
+## LAB : [PortSwigger Lab 14 Link](https://portswigger.net/web-security/sql-injection/blind/lab-sql-injection-visible-error-based)
 
 ## What?
 
