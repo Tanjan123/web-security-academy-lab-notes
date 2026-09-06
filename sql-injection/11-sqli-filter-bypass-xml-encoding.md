@@ -1,6 +1,6 @@
 ## LAB-11 SQL INJECTION WITH FILTER BYPASS VIA XML ENCODING
 
-## LAB : [PortSwigger Lab 11 Link](https://portswigger.net/web-security/sql-injection/advanced-techniques/lab-sql-injection-with-filter-bypass-via-xml-encoding)
+## LAB : [PortSwigger Lab 11 Link](https://portswigger.net/web-security/sql-injection/lab-sql-injection-with-filter-bypass-via-xml-encoding)
 
 ## What?
 
