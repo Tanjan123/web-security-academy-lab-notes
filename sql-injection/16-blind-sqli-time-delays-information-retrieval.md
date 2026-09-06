@@ -1,6 +1,6 @@
 ## LAB-16 BLIND SQL INJECTION WITH TIME DELAYS AND INFORMATION RETRIEVAL
 
-## LAB : [PortSwigger Lab 16 Link](https://portswigger.net/web-security/sql-injection/blind/lab-time-delays-and-information-retrieval)
+## LAB : [PortSwigger Lab 16 Link](https://portswigger.net/web-security/sql-injection/blind/lab-time-delays-info-retrieval)
 
 ## What?
 
