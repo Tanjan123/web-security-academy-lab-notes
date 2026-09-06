@@ -1,6 +1,6 @@
 ## LAB-3 SQL INJECTION ATTACK, QUERYING THE DATABASE TYPE AND VERSION ON ORACLE
 
-## LAB : [PortSwigger Lab 3 Link](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-data-from-specific-columns)
+## LAB : [PortSwigger Lab 3 Link](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-oracle)
 
 ## What?
 
