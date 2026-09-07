@@ -36,6 +36,8 @@ Entered the following payload into the search box:
 
 ![Payload_Platform](xss-images/01/script_payload.png)
 
+![Payload_Platform](xss-images/01/alert.png)
+
 Then clicked **Search**.
 
 The browser executed the JavaScript and displayed an alert dialog, confirming the reflected XSS vulnerability.
