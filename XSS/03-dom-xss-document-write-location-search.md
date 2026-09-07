@@ -29,9 +29,11 @@ The search input was reflected into an `<img>` element:
 <img src="/resources/images/tracker.gif?searchTerms=test">
 ```
 
-
+![Payload_Platform](xss-images/03/test_pd.png)
 
 After inspecting the page, I identified that the search term was being inserted into the `img` element.
+
+![Payload_Platform](xss-images/03/test_inspect.png)
 
 The important part was that the application was using data from `location.search` and writing it into the page through `document.write`.
 
@@ -59,6 +61,8 @@ I also tested:
 "><script>alert(1)</script>
 ```
 
+![Payload_Platform](xss-images/03/pd_attack.png)
+
 Both payloads successfully triggered the JavaScript alert.
 
 ## Testing
@@ -69,6 +73,8 @@ The basic exploitation idea was to:
 2. Close the existing HTML context using `>`.
 3. Inject a new HTML element.
 4. Trigger JavaScript execution.
+
+![Payload_Platform](xss-images/03/pd_inspect.png)
 
 Payload:
 
