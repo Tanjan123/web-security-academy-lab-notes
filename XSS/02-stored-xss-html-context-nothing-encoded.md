@@ -41,7 +41,7 @@ Entered the following payload into the comment box:
 <script>alert(1)</script>
 ```
 
-![Payload_Platform](images/02/cmt_payload.png)
+![Payload_Platform](xss-images/02/cmt_payload.png)
 
 Then:
 
@@ -73,7 +73,7 @@ The payload is **stored rather than reflected immediately**.
 
 An interesting observation from the lab was that the saved comment appeared as an **empty comment** in the comment section.
 
-![Payload_Platform](images/02/cmt_stored.png)
+![Payload_Platform](xss-images/02/cmt_stored.png)
 
 This happens because the stored content was a `<script>` element rather than visible text. The script executes every time the blog page loads, so there is no normal comment text displayed.
 
