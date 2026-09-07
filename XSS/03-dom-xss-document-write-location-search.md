@@ -65,6 +65,8 @@ I also tested:
 
 Both payloads successfully triggered the JavaScript alert.
 
+![Payload_Platform](xss-images/03/pd_inspect.png)
+
 ## Testing
 
 The basic exploitation idea was to:
@@ -73,8 +75,6 @@ The basic exploitation idea was to:
 2. Close the existing HTML context using `>`.
 3. Inject a new HTML element.
 4. Trigger JavaScript execution.
-
-![Payload_Platform](xss-images/03/pd_inspect.png)
 
 Payload:
 
