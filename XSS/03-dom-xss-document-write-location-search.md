@@ -65,7 +65,13 @@ I also tested:
 
 Both payloads successfully triggered the JavaScript alert.
 
+![Payload_Platform](xss-images/03/alert.png)
+
+ And here we got alert message which means our html payload worked after escaping the img tag.
+
 ![Payload_Platform](xss-images/03/pd_inspect.png)
+
+Here , we can see our payload escaped img tag and script payload is out side of img tag.
 
 ## Testing
 
