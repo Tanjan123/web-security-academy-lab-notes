@@ -25,6 +25,8 @@ I tested the search functionality and observed that the search input was process
 
 Because the application uses data from `location.search` in an `innerHTML` assignment, the input can be interpreted as HTML instead of being treated as plain text.
 
+![Payload_Platform](xss-images/04/test_payload.png)
+
 This indicated a potential DOM XSS vulnerability.
 
 ## How did I verify it?
@@ -34,6 +36,8 @@ I entered the following payload into the search box:
 `<img src=1 onerror=alert(1)>`
 
 Then I clicked **Search**.
+
+![Payload_Platform](xss-images/04/event_payload.png)
 
 The payload executed and an alert appeared, confirming the DOM XSS vulnerability.
 
