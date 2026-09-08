@@ -36,9 +36,11 @@ The **Back** button normally uses this value to redirect back to the home page.
 
 I then changed the parameter to include a random value: `returnPath=/abcd`
 
-
+![Payload_Platform](xss-images/05/href_check.png)
 
 and clicked the Back button.
+
+![Payload_Platform](xss-images/05/back_click.png)
 
 This redirected to a **Not Found** page, showing that the value of `returnPath` was being used as the destination of the Back link.
 
@@ -56,7 +58,11 @@ The resulting URL was:
 
 After loading the page and clicking the **Back** link, an alert displaying `document.cookie` appeared.
 
+![Payload_Platform](xss-images/05/js_apyload.png)
+
 This confirmed the DOM XSS vulnerability.
+
+![Payload_Platform](xss-images/05/alert.png)
 
 ## What happens?
 
