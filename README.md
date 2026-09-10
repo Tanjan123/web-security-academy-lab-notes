@@ -13,4 +13,4 @@ PortSwigger Web Security Academy labs.
 
 - [SQL Injection](sql-injection/README.md)
 
-- [XSS (Cross Site Scripting)](xss/README.md)
+- [XSS (Cross Site Scripting)](XSS/README.md)
